@@ -25,17 +25,5 @@ func Login(requestUser *models.User) (int, []byte) {
 	return http.StatusUnauthorized, []byte("")
 }
 
-func RefreshToken(requestUser *models.User) []byte {
-	authBackend := authentication.InitJWTAuthenticationBackend()
-	token, err := authBackend.GenerateToken(requestUser.UUID)
-	if err != nil {
-		panic(err)
-	}
-	response, err := json.Marshal(parameters.TokenAuthentication{token})
-	if err != nil {
-		panic(err)
-	}
-	return response
-}
 
 
